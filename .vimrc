@@ -148,7 +148,6 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-sexp-mappings-for-regular-people'
 
-
 " Required:
 call neobundle#end()
 
@@ -169,8 +168,8 @@ colorscheme solarized
 " Syntax highlighting.
 syntax enable
 
+" Time between keystrokes.
 set timeoutlen=1000 ttimeoutlen=0
-
 
 " ================ General Config ====================
 "set number                      "Line numbers are good
@@ -210,6 +209,39 @@ set wildmode=list:longest
 set ttyfast
 set undofile
 
+" Highlight searches.
+set hlsearch
+
+set incsearch
+
+set ignorecase
+set smartcase
+
+set shortmess=atI
+
+" The Silver Searcher, http://robots.thoughtbot.com/faster-grepping-in-vim/
+" Use ag over grep
+set grepprg=ag\ --nogroup\ --nocolor
+
+set wrap linebreak textwidth=0
+
+set formatoptions-=o "dont continue comments when pushing o/O
+
+"vertical/horizontal scroll off settings
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
+
+set colorcolumn=80
+let &colorcolumn="80,".join(range(120,320),",")
+
+set nonumber
+
+set splitbelow
+set splitright
+
+set showmatch " briefly jump to the matching bracket on insert
+
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -226,27 +258,11 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-au FocusLost * :wa
-
 " Use jj to escape in insert mode.
 inoremap jj <ESC>
 
-
-" Highlight searches.
-set hlsearch
-
 " Clear highlighted search matches.
 nnoremap <leader><space> :noh<cr>
-
-set incsearch
-
-set ignorecase
-set smartcase
-
-set shortmess=atI
-
-
-
 
 " cut down key stroke for normal mode
 nnoremap ; :
@@ -254,28 +270,9 @@ nnoremap ; :
 " git commit message
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" The Silver Searcher, http://robots.thoughtbot.com/faster-grepping-in-vim/
-" Use ag over grep
-set grepprg=ag\ --nogroup\ --nocolor
-
-
-set wrap linebreak textwidth=0
-
-set formatoptions-=o "dont continue comments when pushing o/O
-
-"vertical/horizontal scroll off settings
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=1
-
-
-
-set colorcolumn=80
-let &colorcolumn="80,".join(range(120,320),",")
 
 let g:auto_save = 1
+au FocusLost * :wa
 
-
-
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-:nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
