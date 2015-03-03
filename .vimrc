@@ -37,11 +37,19 @@ if has('vim_starting')
   set nocompatible " Be iMproved
 
 " Required:
-  set runtimepath+=/Users/davileen/.vim/bundle/neobundle.vim/
+  if has("macunix")
+    set runtimepath+=/Users/davileen/.vim/bundle/neobundle.vim/
+  elseif has("unix")
+    set runtimepath+=/home/local/ANT/davileen/.vim/bundle/neobundle.vim/
+  endif
 endif
 
 " Required:
-call neobundle#begin(expand('/Users/davileen/.vim/bundle'))
+if has("macunix")
+  call neobundle#begin(expand('/Users/davileen/.vim/bundle'))
+elseif has("unix")
+  call neobundle#begin(expand('/home/local/ANT/davileen/.vim/bundle'))
+endif
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -58,7 +66,6 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ntpeters/vim-better-whitespace'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'rking/ag.vim'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'honza/vim-snippets'
@@ -237,6 +244,7 @@ let g:auto_save = 1
 let g:airline#extensions#tabline#enabled = 1
 
 let g:ctrlp_switch_buffer = 0
+
 
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
